@@ -1,0 +1,112 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<style>
+    :root {
+        --bg-body: #F0F0DB;
+        --bg-card: #E1D9BC;
+        --primary-dark: #30364F;
+        --accent-grey: #ACBAC4;
+        --text-main: #30364F;
+    }
+
+    body {
+        background-color: var(--bg-body);
+        color: var(--text-main);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .welcome-container {
+        margin-top: 10vh;
+    }
+
+    .welcome-card {
+        background-color: var(--bg-card);
+        border: 1px solid var(--accent-grey);
+        border-radius: 20px;
+        padding: 4rem 2rem;
+        box-shadow: 0 15px 35px rgba(48, 54, 79, 0.05);
+        text-align: center;
+    }
+
+    .user-badge {
+        background-color: var(--primary-dark);
+        color: #ffffff;
+        width: 80px;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        margin: 0 auto 1.5rem auto;
+        font-size: 2rem;
+        font-weight: bold;
+        box-shadow: 0 4px 10px rgba(48, 54, 79, 0.2);
+    }
+
+    .btn-logout {
+        display: inline-block;
+        margin-top: 2rem;
+        padding: 0.6rem 2rem;
+        border: 2px solid var(--primary-dark);
+        color: var(--primary-dark);
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+
+        .btn-logout:hover {
+            background-color: var(--primary-dark);
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+    .dashboard-action {
+        background-color: var(--primary-dark);
+        color: #fff;
+        padding: 0.8rem 2.5rem;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        display: inline-block;
+        transition: opacity 0.2s;
+    }
+
+        .dashboard-action:hover {
+            color: #fff;
+            opacity: 0.9;
+        }
+</style>
+
+<div class="container welcome-container">
+    <div class="row justify-content-center">
+        <div class="col-md-7 col-lg-6">
+            <div class="welcome-card">
+                <div class="user-badge">
+                    @ViewBag.UserName?.Substring(0, 1).ToUpper()
+                </div>
+
+                <h1 class="fw-bold mb-3">Welcome, @ViewBag.UserName!</h1>
+                <p class="lead mb-4" style="color: #6c757d;">
+                    You have successfully accessed your secure workspace.
+                </p>
+
+                <div class="mt-4">
+                    <a href="/Task/Index" class="dashboard-action shadow-sm">
+                        Go to My Tasks
+                    </a>
+                </div>
+
+                <a href="/Account/Logout" class="btn-logout">
+                    <i class="bi bi-box-arrow-right me-2"></i>Logout
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

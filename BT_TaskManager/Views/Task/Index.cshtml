@@ -1,0 +1,191 @@
+﻿@model List<BT_TaskManager.Models.BT_Task>
+
+@{
+    ViewData["Title"] = "My Tasks";
+}
+
+<style>
+    :root {
+        --bg-body: #F0F0DB;
+        --bg-card: #E1D9BC;
+        --primary-dark: #30364F;
+        --accent-grey: #ACBAC4;
+        --text-main: #30364F;
+        --status-pending: #8a94a6;
+        --status-complete: #4a5d4a;
+    }
+
+    body {
+        background-color: var(--bg-body);
+        color: var(--text-main);
+        font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    .dashboard-container {
+        margin-top: 3rem;
+        padding-bottom: 5rem;
+    }
+
+    /* Header Section */
+    .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+    }
+
+    .btn-create {
+        background-color: var(--primary-dark);
+        color: #ffffff;
+        border-radius: 8px;
+        padding: 0.6rem 1.5rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+        .btn-create:hover {
+            background-color: #24283b;
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(48, 54, 79, 0.15);
+        }
+
+    /* Table Styling */
+    .table-container {
+        background-color: var(--bg-card);
+        border-radius: 16px;
+        border: 1px solid var(--accent-grey);
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(48, 54, 79, 0.05);
+    }
+
+    .table {
+        margin-bottom: 0;
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+        .table thead {
+            background-color: var(--primary-dark);
+            color: #ffffff;
+        }
+
+        .table th {
+            padding: 1.2rem 1rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            border: none;
+        }
+
+        .table td {
+            padding: 1.2rem 1rem;
+            vertical-align: middle;
+            border-bottom: 1px solid rgba(172, 186, 196, 0.4);
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .table tr:last-child td {
+            border-bottom: none;
+        }
+
+    /* Status Badges */
+    .badge-status {
+        padding: 0.4rem 0.8rem;
+        border-radius: 6px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
+    .status-pending {
+        background: #d1d6db;
+        color: #4b5563;
+    }
+
+    .status-completed {
+        background: #30364F;
+        color: #ffffff;
+    }
+
+    /* Action Links */
+    .action-link {
+        color: var(--primary-dark);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.9rem;
+        margin: 0 0.5rem;
+        transition: opacity 0.2s;
+    }
+
+        .action-link:hover {
+            opacity: 0.7;
+        }
+
+    .link-delete {
+        color: #a34e4e;
+    }
+
+    .description-text {
+        max-width: 250px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: #555;
+    }
+</style>
+
+<div class="container dashboard-container">
+    <div class="page-header">
+        <div>
+            <h2 class="fw-bold mb-0">My Tasks</h2>
+            <p class="text-muted small">Manage and track your daily productivity</p>
+        </div>
+        <a href="/Task/Create" class="btn-create shadow-sm">
+            + Create New Task
+        </a>
+    </div>
+
+    <div class="table-container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th>Due Date</th>
+                    <th class="text-end">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="fw-bold">@item.Title</td>
+                        <td>
+                            <div class="description-text">@item.Description</div>
+                        </td>
+                        <td>
+                            <span class="badge-status @(item.Status == "Completed" ? "status-completed" : "status-pending")">
+                                @item.Status
+                            </span>
+                        </td>
+                        <td class="text-muted">
+                            @(item.DueDate.HasValue? item.DueDate.Value.ToString("MMM dd, yyyy") : "No date")
+                        </td>
+                        <td class="text-end">
+                            <a href="/Task/Edit/@item.TaskId" class="action-link">Edit</a>
+                            <span class="text-muted">|</span>
+                            <a href="/Task/Delete/@item.TaskId" class="action-link link-delete">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

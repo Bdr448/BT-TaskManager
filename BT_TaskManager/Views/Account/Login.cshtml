@@ -1,0 +1,120 @@
+﻿@{
+    ViewData["Title"] = "Login";
+}
+
+<style>
+    :root {
+        --bg-body: #F0F0DB;
+        --bg-card: #E1D9BC;
+        --primary-dark: #30364F;
+        --accent-grey: #ACBAC4;
+        --text-main: #30364F;
+    }
+
+    body {
+        background-color: var(--bg-body);
+        color: var(--text-main);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .login-container {
+        margin-top: 10vh;
+    }
+
+    .card-login {
+        background-color: var(--bg-card);
+        border: 1px solid var(--accent-grey);
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(48, 54, 79, 0.1);
+        padding: 2.5rem;
+    }
+
+    .form-label {
+        font-weight: 600;
+        color: var(--primary-dark);
+        font-size: 0.9rem;
+    }
+
+    .form-control {
+        border: 1.5px solid var(--accent-grey);
+        border-radius: 8px;
+        padding: 0.75rem;
+        background-color: #ffffff;
+    }
+
+        .form-control:focus {
+            border-color: var(--primary-dark);
+            box-shadow: 0 0 0 0.2rem rgba(48, 54, 79, 0.15);
+        }
+
+    .btn-login {
+        background-color: var(--primary-dark);
+        border: none;
+        border-radius: 8px;
+        padding: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        transition: all 0.3s ease;
+        color: #ffffff;
+    }
+
+        .btn-login:hover {
+            background-color: #24283b;
+            transform: translateY(-1px);
+            color: #ffffff;
+        }
+
+    .register-link {
+        color: var(--primary-dark);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 0.9rem;
+    }
+
+        .register-link:hover {
+            text-decoration: underline;
+        }
+
+    .alert-danger {
+        border-radius: 8px;
+        font-size: 0.85rem;
+    }
+</style>
+
+<div class="row justify-content-center login-container">
+    <div class="col-md-4">
+        <div class="card-login">
+            <h3 class="text-center mb-4 fw-bold">Welcome Back</h3>
+
+            @if (ViewBag.Error != null)
+            {
+                <div class="alert alert-danger shadow-sm">
+                    <i class="bi bi-exclamation-triangle-fill me-2"></i> @ViewBag.Error
+                </div>
+            }
+
+            <form asp-action="Login" method="post">
+                <div class="mb-3">
+                    <label class="form-label">Email Address</label>
+                    <input type="email" name="email" class="form-control" placeholder="name@example.com" required />
+                </div>
+
+                <div class="mb-4">
+                    <label class="form-label">Password</label>
+                    <input type="password" name="password" class="form-control" placeholder="••••••••" required />
+                </div>
+
+                <button type="submit" class="btn btn-login w-100 shadow-sm">
+                    Sign In
+                </button>
+            </form>
+
+            <div class="text-center mt-4">
+                <p class="small text-muted mb-0">Don't have an account?</p>
+                <a asp-controller="Account" asp-action="Register" class="register-link">
+                    Create a free account
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

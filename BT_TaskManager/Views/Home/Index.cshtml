@@ -1,0 +1,144 @@
+﻿@{
+    ViewData["Title"] = "Welcome";
+}
+
+<style>
+    :root {
+        --bg-body: #F0F0DB;
+        --bg-card: #E1D9BC;
+        --primary-dark: #30364F;
+        --accent-grey: #ACBAC4;
+        --text-main: #30364F;
+    }
+
+    body {
+        background-color: var(--bg-body);
+        color: var(--text-main);
+        font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    .hero-section {
+        padding: 100px 0;
+        background: linear-gradient(180deg, #F0F0DB 0%, #E1D9BC 100%);
+        border-radius: 0 0 50px 50px;
+    }
+
+    .display-4 {
+        color: var(--primary-dark);
+        letter-spacing: -1px;
+    }
+
+    .lead {
+        color: #5a5e70;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .btn-get-started {
+        background-color: var(--primary-dark);
+        color: #ffffff;
+        border: none;
+        padding: 1rem 2.5rem;
+        font-weight: 600;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+    }
+
+        .btn-get-started:hover {
+            background-color: #24283b;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(48, 54, 79, 0.2);
+            color: #fff;
+        }
+
+    .btn-login-outline {
+        border: 2px solid var(--primary-dark);
+        color: var(--primary-dark);
+        padding: 1rem 2.5rem;
+        font-weight: 600;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+    }
+
+        .btn-login-outline:hover {
+            background-color: var(--primary-dark);
+            color: #ffffff;
+        }
+
+    .feature-box {
+        background: rgba(255, 255, 255, 0.4);
+        border: 1px solid var(--accent-grey);
+        padding: 2rem;
+        border-radius: 20px;
+        margin-top: 3rem;
+        transition: transform 0.3s ease;
+    }
+
+        .feature-box:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.6);
+        }
+
+    .icon-circle {
+        width: 60px;
+        height: 60px;
+        background: var(--primary-dark);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.5rem;
+        font-size: 1.5rem;
+    }
+</style>
+
+<div class="hero-section text-center">
+    <div class="container">
+        <h1 class="display-4 fw-bold mb-4">Manage Your Tasks Efficiently</h1>
+        <p class="lead mb-5">
+            A simple and powerful task management system built with ASP.NET Core MVC.
+            Organize your workflow, meet your deadlines, and boost productivity.
+        </p>
+
+        <div class="d-flex justify-content-center gap-3">
+            <a class="btn btn-get-started btn-lg shadow"
+               asp-controller="Account"
+               asp-action="Register">
+                Get Started
+            </a>
+
+            <a class="btn btn-login-outline btn-lg"
+               asp-controller="Account"
+               asp-action="Login">
+                Login
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="container mb-5">
+    <div class="row text-center">
+        <div class="col-md-4">
+            <div class="feature-box shadow-sm">
+                <div class="icon-circle">✓</div>
+                <h5 class="fw-bold">Simple Tracking</h5>
+                <p class="small text-muted">Keep track of your pending and completed tasks with a clean interface.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="feature-box shadow-sm">
+                <div class="icon-circle">📅</div>
+                <h5 class="fw-bold">Smart Deadlines</h5>
+                <p class="small text-muted">Never miss a due date with our organized task scheduling system.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="feature-box shadow-sm">
+                <div class="icon-circle">🔒</div>
+                <h5 class="fw-bold">Secure Access</h5>
+                <p class="small text-muted">Your data is safe with our built-in ASP.NET Core security features.</p>
+            </div>
+        </div>
+    </div>
+</div>

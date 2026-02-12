@@ -1,0 +1,130 @@
+﻿@model BT_TaskManager.Models.BT_User
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<style>
+    :root {
+        --bg-body: #F0F0DB;
+        --bg-card: #E1D9BC;
+        --primary-dark: #30364F;
+        --accent-grey: #ACBAC4;
+        --text-main: #30364F;
+    }
+
+    body {
+        background-color: var(--bg-body);
+        color: var(--text-main);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .register-container {
+        margin-top: 8vh;
+    }
+
+    .card-register {
+        background-color: var(--bg-card);
+        border: 1px solid var(--accent-grey);
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(48, 54, 79, 0.1);
+        padding: 2.5rem;
+    }
+
+    .form-label {
+        font-weight: 600;
+        color: var(--primary-dark);
+        font-size: 0.9rem;
+    }
+
+    .form-control {
+        border: 1.5px solid var(--accent-grey);
+        border-radius: 8px;
+        padding: 0.70rem;
+        background-color: #ffffff;
+    }
+
+        .form-control:focus {
+            border-color: var(--primary-dark);
+            box-shadow: 0 0 0 0.2rem rgba(48, 54, 79, 0.15);
+        }
+
+    /* Styling the validation messages */
+    .text-danger {
+        font-size: 0.8rem;
+        font-weight: 500;
+        margin-top: 4px;
+        display: block;
+    }
+
+    .btn-register {
+        background-color: var(--primary-dark);
+        border: none;
+        border-radius: 8px;
+        padding: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        transition: all 0.3s ease;
+        color: #ffffff;
+        margin-top: 1rem;
+    }
+
+        .btn-register:hover {
+            background-color: #24283b;
+            transform: translateY(-1px);
+            color: #ffffff;
+        }
+
+    .login-link {
+        color: var(--primary-dark);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 0.9rem;
+    }
+
+        .login-link:hover {
+            text-decoration: underline;
+        }
+</style>
+
+<div class="row justify-content-center register-container">
+    <div class="col-md-5 col-lg-4">
+        <div class="card-register">
+            <h3 class="text-center mb-4 fw-bold">Create Account</h3>
+            <p class="text-center text-muted small mb-4">Join us to start managing your tasks efficiently.</p>
+
+            <form asp-action="Register" method="post">
+
+                <div class="mb-3">
+                    <label class="form-label">Full Name</label>
+                    <input asp-for="FullName" class="form-control" placeholder="John Doe" />
+                    <span asp-validation-for="FullName" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Email Address</label>
+                    <input asp-for="Email" class="form-control" placeholder="name@example.com" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label class="form-label">Password</label>
+                    <input asp-for="PasswordHash" type="password" class="form-control" placeholder="Minimum 6 characters" />
+                    <span asp-validation-for="PasswordHash" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn btn-register w-100 shadow-sm">
+                    Get Started
+                </button>
+
+            </form>
+
+            <div class="text-center mt-4">
+                <p class="small text-muted mb-0">Already have an account?</p>
+                <a asp-controller="Account" asp-action="Login" class="login-link">
+                    Sign in here
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
